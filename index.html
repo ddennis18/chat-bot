@@ -30,56 +30,5 @@
     </div>
 </body>
 
-
-<script>
-    const chatSection = document.getElementById("chat-section");
-    const sendBtn = document.getElementById("send-btn");
-    const promptEntry = document.getElementById("prompt")
-
-    const API_KEY = "AIzaSyADs4_gyHxFPv8BbHkOJQ9D6jywdnlFyDQ"
-    const API_REQUEST_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${API_KEY}`
-
-    let userPrompt = ""
-
-    sendBtn.addEventListener("click", () => {
-        userPrompt = promptEntry.value.trim();
-        promptEntry.value = ""
-        addBubble("user", userPrompt)
-        processPrompt()
-    })
-
-    function addBubble(sender, message) {
-        const bubble = document.createElement("div")
-        bubble.classList.add("chat-bubble")
-        if (sender === "user") {
-            bubble.classList.add("user-bubble")
-        } else if (sender === "olive") {
-            bubble.classList.add("olive-bubble")
-        }
-        bubble.textContent = message
-        chatSection.appendChild(bubble)
-    }
-
-    async function processPrompt() {
-        let reply = await askGemini(userPrompt);
-        addBubble("olive", )
-    }
-
-    async function askGemini(p) {
-        const res = await fetch(
-            API_REQUEST_URL,
-            {
-                method:"POST",
-                headers:{"Content-Type":"application/json"},
-                body:JSON.stringify(
-                    {
-                        contents:[{parts:[{text: p}]}], 
-                    }),
-            });
-        const data = await res.json();
-        let ret = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-        return ret;
-    }
-</script>
-
+<script src="script.js"></script>
 </html>
