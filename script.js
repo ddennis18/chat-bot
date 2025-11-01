@@ -8,6 +8,16 @@ const API_REQUEST_URL = `https://generativelanguage.googleapis.com/v1/models/gem
 
 let userPrompt = ""
 
+function resizeEntry()
+{
+    promptEntry.style.height = 'auto';
+    promptEntry.style.height = `${promptEntry.scrollHeight}px`
+}
+
+promptEntry.addEventListener('input', ()=>{
+    resizeEntry();
+})
+
 sendBtn.addEventListener("click", () => {
     if(greeting.style.display !== "none"){
         greeting.style.display = "none"
@@ -15,6 +25,7 @@ sendBtn.addEventListener("click", () => {
     userPrompt = promptEntry.value.trim();
     promptEntry.value = ""
     addBubble("user", userPrompt)
+        resizeEntry()
     processPrompt()
 })
 
@@ -28,9 +39,11 @@ function addBubble(sender, message) {
     } else if (sender === "error") {
         bubble.classList.add("error-bubble")
     }
-    bubble.innerHTML = message
+    const text = document.createElement("pre")
+    text.innerHTML = message
+    bubble.appendChild(text)
     chatSection.appendChild(bubble)
-    chatSection.scrollTop=chatSection.scrollHeight
+    bubble.scrollIntoView({behavior:'smooth'})
 }
 
 async function processPrompt() {
