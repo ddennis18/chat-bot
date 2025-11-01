@@ -24,6 +24,10 @@ header {
     align-items: center;
 
     background-color: purple;
+
+    width: 100%;
+    top:0;
+    left:0;
 }
 
 header h1 {
@@ -42,7 +46,7 @@ body {
 main {
     width: 80%;
     min-height: 80vh;
-    margin: 0 auto 20vh auto;
+    margin: 0 auto 10vh auto;
     display: flex;
     flex-direction: column;
 }
