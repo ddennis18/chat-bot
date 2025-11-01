@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>DD's Web Calc</title>
+</head>
+
+<body>
+    <header>
+        <h2>DD' Web Calc</h2>
+        <button id="contact-me">
+            <i class="fa fa-whatsapp" style="color: white; font-size: 30px;"></i>
+            <a href="https://wa.me/2348087041056">Contact Me</a>
+        </button>
+    </header>
+    <div class="container">
+        <div id="calculator">
+            <div id="aesthetic">
+                <div id="rect"></div>
+                <div>DD Calc</div>
+            </div>
+            <div id="display-pane">
+                <p class="displ" id="display">
+                </p>
+                <p class="displ" id="result">
+                </p>
+            </div>
+            <table>
+                <tr>
+                    <td><button class="calc-btn" id="ans-btn">Ans</button></td>
+                    <td><button class="calc-btn util-btn" id="clear-all">CE</button></td>
+                    <td><button class="calc-btn util-btn" id="clear">C</button></td>
+                    <td><button class="calc-btn util-btn" id="delete">&bigotimes;</button></td>
+                </tr>
+                <tr>
+                    <td><button class="calc-btn scientific-btn" id="inv"><sup>1</sup>/<sub><i>x</i></sub></button></td>
+                    <td><button class="calc-btn scientific-btn" id="sqr">x<sup>2</sup></button></td>
+                    <td><button class="calc-btn scientific-btn" id="sqrt"><sup>2</sup>&Sqrt;x</button></td>
+                    <td><button class="calc-btn operator-btn" id="divide">/</button></td>
+                </tr>
+                <tr>
+                    <td><button class="calc-btn number-btn">7</button></td>
+                    <td><button class="calc-btn number-btn">8</button></td>
+                    <td><button class="calc-btn number-btn">9</button></td>
+                    <td><button class="calc-btn operator-btn" id="multiply">&times;</button></td>
+                </tr>
+                <tr>
+                    <td><button class="calc-btn number-btn">4</button></td>
+                    <td><button class="calc-btn number-btn">5</button></td>
+                    <td><button class="calc-btn number-btn">6</button></td>
+                    <td><button class="calc-btn operator-btn" id="subtract">-</button></td>
+                </tr>
+                <tr>
+                    <td><button class="calc-btn number-btn">1</button></td>
+                    <td><button class="calc-btn number-btn">2</button></td>
+                    <td><button class="calc-btn number-btn">3</button></td>
+                    <td><button class="calc-btn operator-btn" id="add">+</button></td>
+                </tr>
+                <tr>
+                    <td><button class="calc-btn operator-btn">^</button></td>
+                    <td><button class="calc-btn number-btn">0</button></td>
+                    <td><button class="calc-btn number-btn" id="decimal-btn">.</button></td>
+                    <td><button class="calc-btn operator-btn" id="equate-btn">=</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
