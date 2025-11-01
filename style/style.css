@@ -3,7 +3,7 @@
     padding: 0;
     box-sizing: content-box;
 
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 button {
@@ -13,6 +13,8 @@ button {
 }
 
 header {
+    position: sticky;
+
     padding: 10px;
     margin-bottom: 10px;
 
@@ -43,6 +45,16 @@ main {
     margin: auto;
     display: flex;
     flex-direction: column;
+}
+
+#greeting
+{
+    padding-top: 100px;
+    text-align: center;
+}
+
+#greeting h1 span{
+    color: purple;
 }
 
 .chat-bubble {
@@ -97,6 +109,7 @@ main {
     border-style: none;
     border-radius: 4px;
     width: 100%;
+
 
     resize: vertical;
     font-size: .8rem;
