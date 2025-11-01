@@ -66,7 +66,8 @@ async function askGemini(p) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(
                     {
-                        contents: [{ parts: [{ text: "reply to this prompt in a smart and lively language and format your response in raw html: " + p }] }],
+                        contents: [{ parts: [{ text: "reply to this prompt in a simple \
+                            and lively language and format your response in raw html. align the txt to the left: " + p }] }],
                     }),
             });
         const data = await res.json();
