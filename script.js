@@ -25,7 +25,7 @@ sendBtn.addEventListener("click", () => {
     userPrompt = promptEntry.value.trim();
     promptEntry.value = ""
     addBubble("user", userPrompt)
-        resizeEntry()
+    resizeEntry()
     processPrompt()
 })
 
@@ -34,14 +34,16 @@ function addBubble(sender, message) {
     bubble.classList.add("chat-bubble")
     if (sender === "user") {
         bubble.classList.add("user-bubble")
+        const text = document.createElement("pre")
+        text.innerHTML = message
+        bubble.appendChild(text)
     } else if (sender === "olive") {
         bubble.classList.add("olive-bubble")
+        bubble.innerHTML = message
     } else if (sender === "error") {
         bubble.classList.add("error-bubble")
+        bubble.innerHTML = message
     }
-    const text = document.createElement("pre")
-    text.innerHTML = message
-    bubble.appendChild(text)
     chatSection.appendChild(bubble)
     bubble.scrollIntoView({behavior:'smooth'})
 }
