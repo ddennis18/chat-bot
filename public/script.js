@@ -3,6 +3,7 @@ const sendBtn = document.getElementById("send-btn");
 const promptEntry = document.getElementById("prompt");
 const greeting = document.getElementById("greeting");
 const loadingIndicator = document.getElementById("loading-bubbles");
+const memoryLimit = 20;
 const md = window.markdownit();
 
 const API_KEY = "AIzaSyADs4_gyHxFPv8BbHkOJQ9D6jywdnlFyDQ"
@@ -20,11 +21,24 @@ function toggleLoadingIndicator() {
     }
 }
 
-
 function resizeEntry()
 {
     promptEntry.style.height = 'auto';
     promptEntry.style.height = `${promptEntry.scrollHeight}px`
+}
+
+function saveChatHistory(role, content)
+{
+    const history = JSON.parse(localStorage.getItem("chatHistory")) || [];
+    if(history.length > memoryLimit){
+        console.log(history.shift())
+    }
+    history.push({role: role, parts:[{text: content}]});
+    localStorage.setItem("chatHistory", JSON.stringify(history));
+}
+
+function loadChatHistory(){
+    return JSON.parse(localStorage.getItem("chatHistory")) || [];
 }
 
 promptEntry.addEventListener('input', ()=>{
@@ -53,10 +67,12 @@ function addBubble(sender, message) {
         const text = document.createElement("pre")
         text.innerHTML = message
         bubble.appendChild(text)
-    } else if (sender === "olive") {
+    } else if (sender === "model") {
         toggleLoadingIndicator()
         bubble.classList.add("olive-bubble")
         bubble.innerHTML = message
+        saveChatHistory("user", userPrompt)
+        saveChatHistory("model", message)
     } else if (sender === "error") {
         toggleLoadingIndicator()
         bubble.classList.add("error-bubble")
@@ -71,7 +87,7 @@ async function processPrompt() {
     if (reply === null) {
         addBubble("error", "Unable to talk right now. Try checking your internet and retry!")
     } else {
-        addBubble("olive", reply)
+        addBubble("model", reply)
     }
 }
 
@@ -84,7 +100,11 @@ async function askGemini(p) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(
                     {
-                        contents: [{ parts: [{ text: "reply to this prompt in a simple and lively language" + p }] }],
+                        contents: [
+                            {role: "user", parts:[{text:"henceforth you will be referes to as Olive, a helpful and friendly AI assistant."}]},
+                            ...loadChatHistory(),
+                            {role: "user", parts:[{text:p}]}
+                        ],
                     }),
             });
         const data = await res.json();
