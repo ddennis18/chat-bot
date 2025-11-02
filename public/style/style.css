@@ -96,6 +96,33 @@ body {
     color: red;
 }
 
+#loading-bubbles {
+    font-size: .5rem;
+    margin-left: 4px;
+}
+
+.loading-bubble-1, .loading-bubble-2, .loading-bubble-3 {
+    position: relative;
+    color:purple;
+    animation: loading-bubble-animation 1s ease-in-out 0s infinite;
+}
+
+.loading-bubble-1{
+    animation-delay: 0s;
+}
+.loading-bubble-2{
+    animation-delay: .3s;
+}
+.loading-bubble-3{
+    animation-delay: .6s;
+}
+
+@keyframes loading-bubble-animation {
+    0% { bottom: 0px; }
+    50% { bottom: -5px; }
+    100% { bottom: 0px; }
+}
+
 #prompt-entry-container {
     padding-top: 1%;
     width: 100%;

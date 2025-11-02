@@ -1,12 +1,25 @@
 const chatSection = document.getElementById("chat-section");
 const sendBtn = document.getElementById("send-btn");
-const promptEntry = document.getElementById("prompt")
-const greeting = document.getElementById("greeting")
+const promptEntry = document.getElementById("prompt");
+const greeting = document.getElementById("greeting");
+const loadingIndicator = document.getElementById("loading-bubbles");
+const md = window.markdownit();
 
 const API_KEY = "AIzaSyADs4_gyHxFPv8BbHkOJQ9D6jywdnlFyDQ"
 const API_REQUEST_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${API_KEY}`
 
 let userPrompt = ""
+loadingIndicator.remove()
+
+function toggleLoadingIndicator() {
+    if(loadingIndicator.parentNode){
+        loadingIndicator.remove()
+    }else{
+        chatSection.appendChild(loadingIndicator)
+        loadingIndicator.scrollIntoView({behavior:'smooth'})
+    }
+}
+
 
 function resizeEntry()
 {
@@ -19,6 +32,7 @@ promptEntry.addEventListener('input', ()=>{
     promptEntry.scrollIntoView({behavior:'smooth'})
 })
 
+// send button on click
 sendBtn.addEventListener("click", () => {
     if(greeting.style.display !== "none"){
         greeting.style.display = "none"
@@ -26,6 +40,7 @@ sendBtn.addEventListener("click", () => {
     userPrompt = promptEntry.value.trim();
     promptEntry.value = ""
     addBubble("user", userPrompt)
+    toggleLoadingIndicator();
     resizeEntry()
     processPrompt()
 })
@@ -39,9 +54,11 @@ function addBubble(sender, message) {
         text.innerHTML = message
         bubble.appendChild(text)
     } else if (sender === "olive") {
+        toggleLoadingIndicator()
         bubble.classList.add("olive-bubble")
         bubble.innerHTML = message
     } else if (sender === "error") {
+        toggleLoadingIndicator()
         bubble.classList.add("error-bubble")
         bubble.innerHTML = message
     }
@@ -67,12 +84,12 @@ async function askGemini(p) {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(
                     {
-                        contents: [{ parts: [{ text: "reply to this prompt in a simple \
-                            and lively language and format your response in raw html. align the txt to the left: " + p }] }],
+                        contents: [{ parts: [{ text: "reply to this prompt in a simple and lively language" + p }] }],
                     }),
             });
         const data = await res.json();
         let ret = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+        ret = md.render(ret);
         return ret;
     }
     
