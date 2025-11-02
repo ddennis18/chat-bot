@@ -76,11 +76,11 @@ body {
 .user-bubble {
     border-radius: 20px 20px 0px 20px;
     align-self: flex-end;
+    background-color: #e6f4ea;
 }
 
 .user-bubble pre{
     text-wrap: wrap;
-    background-color: #e6f4ea;
 }
 
 .olive-bubble {
