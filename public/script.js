@@ -16,6 +16,7 @@ function resizeEntry()
 
 promptEntry.addEventListener('input', ()=>{
     resizeEntry();
+    promptEntry.scrollIntoView({behavior:'smooth'})
 })
 
 sendBtn.addEventListener("click", () => {
