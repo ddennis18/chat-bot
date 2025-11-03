@@ -48,7 +48,7 @@ function loadChatHistory(){
     return JSON.parse(localStorage.getItem("chatHistory")) || [];
 }
 
-loadAndDisplayPrevChats();
+loadAndDisplayPrevChats()
 
 promptEntry.addEventListener('input', ()=>{
     resizeEntry();
@@ -80,8 +80,6 @@ function addBubble(sender, message) {
         toggleLoadingIndicator()
         bubble.classList.add("olive-bubble")
         bubble.innerHTML = message
-        saveChatHistory("user", userPrompt)
-        saveChatHistory("model", message)
     } else if (sender === "error") {
         toggleLoadingIndicator()
         bubble.classList.add("error-bubble")
@@ -97,6 +95,8 @@ async function processPrompt() {
         addBubble("error", "Unable to talk right now. Try checking your internet and retry!")
     } else {
         addBubble("model", reply)
+        saveChatHistory("user", userPrompt)
+        saveChatHistory("model", message)
     }
 }
 
