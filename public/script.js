@@ -77,7 +77,6 @@ function addBubble(sender, message) {
         text.innerHTML = message
         bubble.appendChild(text)
     } else if (sender === "model") {
-        toggleLoadingIndicator()
         bubble.classList.add("olive-bubble")
         bubble.innerHTML = message
     } else if (sender === "error") {
@@ -95,6 +94,7 @@ async function processPrompt() {
         addBubble("error", "Unable to talk right now. Try checking your internet and retry!")
     } else {
         addBubble("model", reply)
+        toggleLoadingIndicator()
         saveChatHistory("user", userPrompt)
         saveChatHistory("model", message)
     }
