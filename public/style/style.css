@@ -126,7 +126,6 @@ body {
 #prompt-entry-container {
     padding-top: 1%;
     width: 100%;
-    border-top: 2px solid #a0a0a0;
 }
 
 #prompt-entry {
@@ -141,13 +140,14 @@ body {
 
     padding: 10px 20px;
     border-radius: 30px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
 #prompt-entry textarea {
-    padding: 5px 3px;
+    padding: 10px 20px;
 
     border-style: none;
-    border-radius: 4px;
+    border-radius: 30px;
     width: 100%;
     height: auto;
 
@@ -160,7 +160,7 @@ body {
 }
 
 #prompt-entry textarea:focus {
-    outline: none;
+    outline: 2px solid purple;
     background-color: #fff;
 }
 
