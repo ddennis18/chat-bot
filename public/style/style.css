@@ -129,7 +129,7 @@ body {
 }
 
 #prompt-entry {
-    width: 75%;
+    width: 85%;
     margin: auto;
     display: flex;
     flex-direction: row;
