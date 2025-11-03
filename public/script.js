@@ -48,8 +48,6 @@ function loadChatHistory(){
     return JSON.parse(localStorage.getItem("chatHistory")) || [];
 }
 
-loadAndDisplayPrevChats()
-
 promptEntry.addEventListener('input', ()=>{
     resizeEntry();
     promptEntry.scrollIntoView({behavior:'smooth'})
