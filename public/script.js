@@ -12,6 +12,13 @@ const API_REQUEST_URL = `https://generativelanguage.googleapis.com/v1/models/gem
 let userPrompt = ""
 loadingIndicator.remove()
 
+function loadAndDisplayPrevChats(){
+    const history = loadChatHistory();
+    history.forEach(function(chat){
+        addBubble(chat.role, chat.parts[0].text)
+    })
+}
+
 function toggleLoadingIndicator() {
     if(loadingIndicator.parentNode){
         loadingIndicator.remove()
@@ -40,6 +47,8 @@ function saveChatHistory(role, content)
 function loadChatHistory(){
     return JSON.parse(localStorage.getItem("chatHistory")) || [];
 }
+
+loadAndDisplayPrevChats();
 
 promptEntry.addEventListener('input', ()=>{
     resizeEntry();
@@ -127,3 +136,4 @@ async function askGemini(p) {
         }
     }
 }
+
