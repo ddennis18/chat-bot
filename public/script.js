@@ -4,7 +4,7 @@ const promptEntry = document.getElementById("prompt");
 const greeting = document.getElementById("greeting");
 const loadingIndicator = document.getElementById("loading-bubbles");
 const memoryLimit = 20;
-const md = window.markdownit();
+const md = window.markdownit({html:true});
 
 const API_KEY = "AIzaSyADs4_gyHxFPv8BbHkOJQ9D6jywdnlFyDQ"
 const API_REQUEST_URL = `https://generativelanguage.googleapis.com/v1/models/gemini-2.0-flash:generateContent?key=${API_KEY}`
