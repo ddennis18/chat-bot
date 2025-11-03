@@ -89,6 +89,10 @@ body {
     background-color: rgb(243, 201, 243);
 }
 
+.olive-bubble * {
+    text-wrap:wrap;
+}
+
 .error-bubble {
     border-radius: 20px 20px 20px 0px;
     align-self: flex-start;
